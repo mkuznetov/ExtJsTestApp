@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MyApp tests</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
+  <script src="../ext/build/ext-all-debug.js"></script>
+  <script src="../app/view/main/HistoryLogger.js"></script>
+  <script>
+
+    QUnit.test( "MyApp tests", function( assert ) {
+
+      //assert.expect(null);
+      // Setup: creates an instance of HistoryLogger.
+      var hl = new SenchaApp.view.main.HistoryLogger();
+      assert.ok( hl != undefined, "HistoryLogger factory function" );
+
+      // Expectation 1: should fail on attempt to get a value associated with the "NonExistentKey" key.
+      var value = hl.getFromHistory("NonExistentKey");
+      assert.equal( undefined, value, "NonExistentKey, NonExistentKey; equal succeeds" );
+
+      // Expectation 2: should succeed on attempt to get a value associated with the "ExistentKey" key, and the value should be "SomeRandomValue".
+      hl.addToHistory("ExistentKey", "SomeRandomValue");
+      value = hl.getFromHistory("ExistentKey");
+      assert.equal( "SomeRandomValue", value, "SomeRandomValue, SomeRandomValue; equal succeeds" );
+
+      // Expectation 3: should succeed on attempt to get a value associated with the "ExistentKey" key, and the value should be "undefined".
+      hl.addToHistory("ExistentKey", undefined); // Overwrite the value associated with the "ExistentKey" key.
+      value = hl.getFromHistory("ExistentKey");
+      assert.equal( undefined, value, "ExistentKey, ExistentKey; equal succeeds" );
+
+      // Expectation 4: should succeed on attempt to get a value associated with the "ExistentKey" key, and the value should be "null".
+      hl.addToHistory("ExistentKey", null); // Overwrite the value associated with the "ExistentKey" key.
+      value = hl.getFromHistory("ExistentKey");
+      assert.equal( null, value, "ExistentKey, ExistentKey; equal succeeds" );
+
+    });
+  </script>
+</body>
+</html>
+

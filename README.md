@@ -1,4 +1,7 @@
-# Run ExtJsTestApp
+# ExtJsTestApp
+ A simple ExtJS demo application with unit tests.
+
+# Run application
  sencha -sdk /path/to/extjs/framework generate app AppName path/to/app
  
  cd /path/to/app

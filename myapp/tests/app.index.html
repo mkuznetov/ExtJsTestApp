@@ -21,6 +21,13 @@
       var hl = new SenchaApp.view.main.HistoryLogger();
       assert.ok( hl != undefined, "HistoryLogger factory function" );
 
+      // Expectation 0: HistoryLogger should inherit from Ext.Base and contain functions "getFromHistory", "addToHistory".
+      assert.equal( "object", typeof hl, "HistoryLogger object, HistoryLogger object; equal succeeds" );
+      assert.equal( true, Ext.Base.prototype.isPrototypeOf(hl), "Prototype true, Prototype true; equal succeeds" );
+      assert.equal( "Ext.Base", Object.getPrototypeOf(hl).__proto__.$className, "Ext.Base parent, Ext.Base parent; equal succeeds" );
+      assert.equal( "function", typeof hl.getFromHistory, "getFromHistory function, getFromHistory function; equal succeeds" );
+      assert.equal( "function", typeof hl.addToHistory, "addToHistory function, addToHistory function; equal succeeds" );
+
       // Expectation 1: should fail on attempt to get a value associated with the "NonExistentKey" key.
       var value = hl.getFromHistory("NonExistentKey");
       assert.equal( undefined, value, "NonExistentKey, NonExistentKey; equal succeeds" );

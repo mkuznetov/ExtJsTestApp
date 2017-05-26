@@ -1,6 +1,8 @@
 # Run ExtJsTestApp
  sencha -sdk /path/to/extjs/framework generate app AppName path/to/app
+ 
  cd /path/to/app
+ 
  sencha app watch
 
 # Access the main view of ExtJsTestApp

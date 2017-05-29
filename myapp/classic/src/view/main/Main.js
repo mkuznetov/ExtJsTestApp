@@ -100,5 +100,11 @@ Ext.define('SenchaApp.view.main.Main', {
         bind: {
             html: '{loremIpsum}'
         }
+    }, {
+        title: 'HistoryLog',
+        iconCls: 'fa-cog',
+        items: [{
+            xtype: 'historylist'
+        }]
     }]
 });

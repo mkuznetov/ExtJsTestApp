@@ -9,7 +9,7 @@ Ext.define('SenchaApp.Application', {
     name: 'SenchaApp',
 
     stores: [
-        // TODO: add global / shared stores here
+        'HistoryLog'
     ],
     
     launch: function () {

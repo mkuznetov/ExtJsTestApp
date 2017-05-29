@@ -31,6 +31,27 @@ Ext.define('SenchaApp.view.main.MainController', {
             var value = new Date();
             this.logger.addToHistory(key, value);
             console.log("data key: " + key + ", timestamp: " + value);
+
+            // Adding data to history log
+            //var hl = Ext.ComponentQuery.query('HistoryLog')[0];
+            
+            //var historyStore = Ext.StoreManager.lookup('HistoryLog')
+            var historyStore = Ext.getStore('HistoryLog'); // the same
+
+            historyStore.suspendEvents();
+            //var historyData = [ [key, value] ];
+            //historyStore.loadData(historyData, false);
+
+            //console.log("Current number of items in History store: " + historyStore.data.items.length);
+
+            var historyRecord = Ext.data.Record.create([{email: key}, {timestamp: value}]);
+            historyStore.add(historyRecord);
+
+            //console.log("New number of items in History store: " + historyStore.data.items.length);
+
+            //historyStore.reload();
+            historyStore.resumeEvents();
+
         }
     },
 });

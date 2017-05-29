@@ -25,3 +25,4 @@ Ext.define('SenchaApp.view.main.List', {
         select: 'onItemSelected'
     }
 });
+
